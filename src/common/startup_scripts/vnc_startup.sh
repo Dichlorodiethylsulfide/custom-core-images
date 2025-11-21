@@ -611,11 +611,9 @@ if [ -f $HOME/.bashrc ]; then
     source $HOME/.bashrc
 fi
 
-## resolve_vnc_connection
-VNC_IP=$(hostname -i)
-if [[ $DEBUG == true ]]; then
-    echo "IP Address used for external bind: $VNC_IP"
-fi
+## resolve_vnc_connection - VNC_IP is set in the Dockerfile
+VNC_IP="${VNC_IP:-$(hostname -i)}"
+echo "IP Address used for external bind: $VNC_IP"
 
 # Create cert for KasmVNC
 mkdir -p ${HOME}/.vnc
